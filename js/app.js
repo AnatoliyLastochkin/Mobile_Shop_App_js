@@ -1,4 +1,4 @@
-import PhonesPage from './Components/PhonesPage.js'
+import PhonesPage from './components/PhonesPage.js'
 
 
 
