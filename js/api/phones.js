@@ -154,67 +154,71 @@ const phonesFromServer = [
   }
 ];
 const  PhoneDetails = {
-  "additionalFeatures": "Accessibility features: Tactile QWERTY keyboard, four-direction keypad, start and end call buttons, dedicated number keys, camera button, TalkBack screen reader",
+  "additionalFeatures": "Front Facing 1.3MP Camera",
   "android": {
-    "os": "Android 2.1",
-    "ui": "LG Home"
+    "os": "Android 2.2",
+    "ui": "Dell Stage"
   },
   "availability": [
-    "Cellular South"
+    "T-Mobile"
   ],
   "battery": {
-    "standbyTime": "500 hours",
-    "talkTime": "8 hours",
-    "type": "Lithium Ion (Li-Ion) (1500 mAH)"
+    "standbyTime": "",
+    "talkTime": "",
+    "type": "Lithium Ion (Li-Ion) (2780 mAH)"
   },
   "camera": {
     "features": [
       "Flash",
       "Video"
     ],
-    "primary": "3.0 megapixels"
+    "primary": "5.0 megapixels"
   },
   "connectivity": {
     "bluetooth": "Bluetooth 2.1",
-    "cell": "1.9 GHz CDMA PCS, 800 MHz CDMA, EVDO Rev. A, 1xRTT",
+    "cell": "T-mobile HSPA+ @ 2100/1900/AWS/850 MHz",
     "gps": true,
     "infrared": false,
     "wifi": "802.11 b/g"
   },
-  "description": "Android plus QWERTY is a powerful duo. LG Axis melds a speedy UI with the limitless micro-entertainment of 80,000+ apps including voice-activated Google. Feel the tactile vibration on its tempered glass touchscreen. Take the fuzziness out of your fun with a 3.2MP camera that does 360\u00b0 panoramics. And customize your home screens with shortcuts to your apps, favorites, and widgets. It's the centerpiece of your life.",
+  "description": "Introducing Dell\u2122 Streak 7. Share photos, videos and movies together. It\u2019s small enough to carry around, big enough to gather around. Android\u2122 2.2-based tablet with over-the-air upgrade capability for future OS releases.  A vibrant 7-inch, multitouch display with full Adobe\u00ae Flash 10.1 pre-installed.  Includes a 1.3 MP front-facing camera for face-to-face chats on popular services such as Qik or Skype.  16 GB of internal storage, plus Wi-Fi, Bluetooth and built-in GPS keeps you in touch with the world around you.  Connect on your terms. Save with 2-year contract or flexibility with prepaid pay-as-you-go plans",
   "display": {
     "screenResolution": "WVGA (800 x 480)",
-    "screenSize": "3.2 inches",
+    "screenSize": "7.0 inches",
     "touchScreen": true
   },
   "hardware": {
     "accelerometer": true,
-    "audioJack": "",
-    "cpu": "600 MHz Qualcomm MSM7627",
+    "audioJack": "3.5mm",
+    "cpu": "nVidia Tegra T20",
     "fmRadio": false,
-    "physicalKeyboard": true,
+    "physicalKeyboard": false,
     "usb": "USB 2.0"
   },
-  "id": "lg-axis",
+  "id": "dell-streak-7",
   "images": [
-    "img/phones/lg-axis.0.jpg",
-    "img/phones/lg-axis.1.jpg",
-    "img/phones/lg-axis.2.jpg"
+    "img/phones/dell-streak-7.0.jpg",
+    "img/phones/dell-streak-7.1.jpg",
+    "img/phones/dell-streak-7.2.jpg",
+    "img/phones/dell-streak-7.3.jpg",
+    "img/phones/dell-streak-7.4.jpg"
   ],
-  "name": "LG Axis",
+  "name": "Dell Streak 7",
   "sizeAndWeight": {
     "dimensions": [
-      "56.0 mm (w)",
-      "116.0 mm (h)",
-      "16.0 mm (d)"
+      "199.9 mm (w)",
+      "119.8 mm (h)",
+      "12.4 mm (d)"
     ],
-    "weight": "158.0 grams"
+    "weight": "450.0 grams"
   },
   "storage": {
-    "flash": "126MB",
-    "ram": "256MB"
+    "flash": "16000MB",
+    "ram": "512MB"
   }
 };
+
+
 
 export const getAll = () => {
   return phonesFromServer

@@ -1,19 +1,17 @@
-export default class PhonesCatalog {
+import Components from "../Components.js";
+
+export default class PhonesCatalog extends Components {
   constructor(element, props) {
+    super();
     this.element = element;
     this.props = props;
 
-    this.render()
+    this.render();
 
-    this.element.addEventListener('click', evt => {
-      const phoneLink = evt.target.closest('[data-element="PhoneLink"]');
-
-      if (!phoneLink) return;
-
-      const phoneId = phoneLink.dataset.phoneId;
-
+    this.on('click', 'PhoneLink', evt => {
+      const phoneId =  evt.delegateTarget.dataset.phoneId;
       this.props.onPhoneSelected(phoneId);
-    });
+    })
   }
 
   render() {
