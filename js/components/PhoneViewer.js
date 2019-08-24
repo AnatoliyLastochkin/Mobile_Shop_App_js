@@ -1,15 +1,17 @@
-import Components from "../Components.js";
+import Component from "../Component.js";
 
-export default class PhoneViewer extends Components {
+export default class PhoneViewer extends Component {
   constructor(element, props) {
-    super();
-    this.element = element;
-    this.props = props;
+    super(element, props);
 
     this.render();
 
     this.on('click', 'BackButton', evt => {
       this.props.onBack();
+    });
+
+    this.on('click', 'AddButton', evt => {
+      this.props.onAdd(this.props.phone.id);
     });
   }
 
@@ -20,8 +22,8 @@ export default class PhoneViewer extends Components {
   
       <img class="phone" src="${phone.images[0]}">
   
-      <button data-element="BackButton">Back</button>
-      <button>Add to basket</button>
+      <button data-element="BackButton" class="btn btn-success">Back</button>
+      <button data-element="AddButton" class="btn btn-success">Add to basket</button>
   
   
       <h1>${phone.name}</h1>
