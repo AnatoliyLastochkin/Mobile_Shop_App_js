@@ -12,7 +12,7 @@ export default class ShoppingCart extends Component {
       <h4>Shopping Cart</h4>
       <ul class="shopping-cart-list">
         ${this.props.items.map(item => `
-          <li>${item.toUpperCase().slice(0, 25)}<button class="btn">X</button></li>  
+          <li>${item.toUpperCase().slice(0, 15)}<button class="btn">X</button></li>  
         `).join('')}
       </ul>    
     `;
