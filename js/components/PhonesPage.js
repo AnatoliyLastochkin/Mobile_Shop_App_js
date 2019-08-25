@@ -47,6 +47,11 @@ export default class PhonesPage extends Component {
     });
     this.initComponent(ShoppingCart, {
       items: this.state.items,
+      onRemove: (phoneId) => {
+        this.setState({
+          items: this.state.items.filter(item => item !== phoneId),
+        });
+      }
     });
     this.initComponent(Filter);
   }
