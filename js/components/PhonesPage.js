@@ -3,34 +3,57 @@ import ShoppingCart from './ShoppingCart.js';
 import Filter from './Filter.js';
 import PhoneViewer from './PhoneViewer.js';
 import { getAll, getById } from "../api/phones.js";
+import Component from "../Component.js";
 
-export default class PhonesPage {
+export default class PhonesPage extends Component {
   constructor(element) {
-    this.element = element;
+    super(element);
 
     this.state = {
       phones: getAll(),
       selectedPhone: null,
-    };
-    this.render();
-  }
-
-  setState(newState) {
-    this.state = {
-      ...this.state,
-      ...newState
+      items: [],
     };
 
     this.render();
   }
 
-  initComponent(Constructor, props = {}) {
-    const componentName = Constructor.name;
-    const element = this.element.querySelector(`[data-component="${componentName}"]`);
-
-    if (element) {
-      new Constructor(element, props);
-    }
+  init() {
+    this.initComponent(PhonesCatalog, {
+      phones: this.state.phones,
+      onPhoneSelected: (phoneId) => {
+        this.setState({
+          selectedPhone: getById(phoneId),
+        })
+      },
+      onAdd: (phoneId) => {
+        this.setState({
+          items: [...this.state.items, phoneId],
+        });
+      },
+    });
+    this.initComponent(PhoneViewer, {
+      phone: this.state.selectedPhone,
+      onBack: () => {
+        this.setState({
+          selectedPhone: null,
+        });
+      },
+      onAdd: (phoneId) => {
+        this.setState({
+          items: [...this.state.items, phoneId],
+        });
+      },
+    });
+    this.initComponent(ShoppingCart, {
+      items: this.state.items,
+      onRemove: (phoneId) => {
+        this.setState({
+          items: this.state.items.filter(item => item !== phoneId),
+        });
+      }
+    });
+    this.initComponent(Filter);
   }
 
   render() {
@@ -59,23 +82,6 @@ export default class PhonesPage {
       </div>  
     `;
 
-    this.initComponent(PhonesCatalog, {
-      phones: this.state.phones,
-      onPhoneSelected: (phoneId) => {
-        this.setState({
-          selectedPhone: getById(phoneId),
-        })
-      },
-    });
-    this.initComponent(PhoneViewer, {
-      phone: this.state.selectedPhone,
-      onBack: () => {
-        this.setState({
-          selectedPhone: null,
-        });
-      },
-    });
-    this.initComponent(ShoppingCart);
-    this.initComponent(Filter);
+    this.init();
   }
 }

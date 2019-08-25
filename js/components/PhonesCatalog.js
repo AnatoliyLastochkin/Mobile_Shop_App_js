@@ -1,18 +1,19 @@
-export default class PhonesCatalog {
+import Component from "../Component.js";
+
+export default class PhonesCatalog extends Component {
   constructor(element, props) {
-    this.element = element;
-    this.props = props;
+    super(element, props);
 
-    this.render()
+    this.render();
 
-    this.element.addEventListener('click', evt => {
-      const phoneLink = evt.target.closest('[data-element="PhoneLink"]');
-
-      if (!phoneLink) return;
-
-      const phoneId = phoneLink.dataset.phoneId;
-
+    this.on('click', 'PhoneLink', evt => {
+      const phoneId =  evt.delegateTarget.dataset.phoneId;
       this.props.onPhoneSelected(phoneId);
+    });
+
+    this.on('click', 'AddButton', evt => {
+      const phoneId =  evt.delegateTarget.dataset.phoneId;
+      this.props.onAdd(phoneId);
     });
   }
 
@@ -28,7 +29,7 @@ export default class PhonesCatalog {
             </ada>
 
             <div class="phones__btn-buy-wrapper">
-              <a class="btn btn-success">
+              <a class="btn btn-success" data-element="AddButton" data-phone-id="${ item.id }">
                 Add
               </a>
             </div>
