@@ -10,48 +10,68 @@ export default class PhonesPage extends Component {
     super(element);
 
     this.state = {
-      phones: getAll(),
+      phones: [],
       selectedPhone: null,
-      items: [],
+      items: {},
     };
 
+    this.onRemove = (phoneId) => this.removeItem(phoneId);
+    this.onPhoneSelected = (phoneId) => this.selectedPhone(phoneId);
+    this.onAdd = (phoneId) => this.addItem(phoneId);
+    this.onBack = () => this.unSelectedPhone();
+
     this.render();
+
+    this.loadPhones();
+  }
+
+  async loadPhones() {
+    const phones = await getAll()
+    this.setState({ phones })
+  }
+
+  removeItem(phoneId) {
+    const newItems = this.state.items;
+    delete newItems[phoneId];
+    this.setState({
+      items: newItems,
+    });
+  }
+  addItem(phoneId) {
+    const oldItems = this.state.items;
+    const items = {
+      ...oldItems,
+      [phoneId]: oldItems[phoneId] ? oldItems[phoneId] + 1 : 1,
+    };
+
+    this.setState({
+      items: items,
+    });
+  }
+  async selectedPhone(phoneId) {
+    const phone = await getById(phoneId);
+    this.setState({ selectedPhone: phone });
+  }
+  unSelectedPhone() {
+    this.setState({
+      selectedPhone: null,
+    });
   }
 
   init() {
     this.initComponent(PhonesCatalog, {
       phones: this.state.phones,
-      onPhoneSelected: (phoneId) => {
-        this.setState({
-          selectedPhone: getById(phoneId),
-        })
-      },
-      onAdd: (phoneId) => {
-        this.setState({
-          items: [...this.state.items, phoneId],
-        });
-      },
+      onPhoneSelected: this.onPhoneSelected ,
+      onAdd: this.onAdd,
     });
     this.initComponent(PhoneViewer, {
       phone: this.state.selectedPhone,
-      onBack: () => {
-        this.setState({
-          selectedPhone: null,
-        });
-      },
-      onAdd: (phoneId) => {
-        this.setState({
-          items: [...this.state.items, phoneId],
-        });
-      },
+      onBack: this.onBack,
+      onAdd: this.onAdd,
     });
     this.initComponent(ShoppingCart, {
       items: this.state.items,
-      onRemove: (phoneId) => {
-        this.setState({
-          items: this.state.items.filter(item => item !== phoneId),
-        });
-      }
+      onRemove:  this.onRemove,
     });
     this.initComponent(Filter);
   }

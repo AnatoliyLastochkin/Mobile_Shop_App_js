@@ -17,8 +17,8 @@ export default class ShoppingCart extends Component {
     this.element.innerHTML = `
       <h4>Shopping Cart</h4>
       <ul class="shopping-cart-list">
-        ${this.props.items.map(item => `
-          <li>${item.toUpperCase().slice(0, 15)}
+        ${Object.keys(this.props.items).map(item => `
+          <li>${item.toUpperCase().slice(0, 13)} - ${this.props.items[item]}
             <button class="btn" data-element="RemoveButton" data-phone-id="${ item }">X</button>
           </li>  
         `).join('')}

@@ -3,13 +3,22 @@ export default class Component {
     this.element = element;
     this.props = props;
 
+    this.components = {};
   }
   initComponent(Constructor, props = {}) {
     const componentName = Constructor.name;
     const element = this.element.querySelector(`[data-component="${componentName}"]`);
 
-    if (element) {
-      new Constructor(element, props);
+    if (!element) {
+      return;
+    }
+
+    const current = this.components[componentName];
+
+    if (!current || !this.deepEqual(current.props, props)) {
+      this.components[componentName] = new Constructor(element, props);
+    } else {
+      element.parentNode.replaceChild(current.element, element);
     }
   }
 
@@ -33,4 +42,21 @@ export default class Component {
       callBack(evt);
     });
   }
+
+  deepEqual(a, b) {
+    if (a === b) return true;
+
+    if (typeof a !== 'object'
+      ||typeof b !== 'object'
+      || a === null
+      || b === null) {
+      return false
+    }
+
+    return Object.keys(a).length === Object.keys(b).length &&
+      Object.keys(a).every(key => this.deepEqual(a[key], b[key]))
+  }
+
+
 }
+
