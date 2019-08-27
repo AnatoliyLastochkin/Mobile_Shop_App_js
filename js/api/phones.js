@@ -11,7 +11,7 @@ export const getAll = async () => {
 };
 
 export const getById = async (phoneId) => {
-  try{
+  try {
     const response = await fetch(`${API_URL}/${phoneId}.json`);
     const data = response.json();
     return data;
@@ -19,3 +19,5 @@ export const getById = async (phoneId) => {
     return 0;
   }
 };
+
+

@@ -31,7 +31,7 @@ export default class PhonesPage extends Component {
   }
 
   removeItem(phoneId) {
-    const newItems = this.state.items;
+    const newItems = {...this.state.items};
     delete newItems[phoneId];
     this.setState({
       items: newItems,
@@ -50,8 +50,9 @@ export default class PhonesPage extends Component {
   }
   async selectedPhone(phoneId) {
     const phone = await getById(phoneId);
-    this.setState({ selectedPhone: phone });
+    this.setState({ selectedPhone: phone});
   }
+
   unSelectedPhone() {
     this.setState({
       selectedPhone: null,
@@ -69,6 +70,7 @@ export default class PhonesPage extends Component {
       onBack: this.onBack,
       onAdd: this.onAdd,
     });
+
     this.initComponent(ShoppingCart, {
       items: this.state.items,
       onRemove:  this.onRemove,
