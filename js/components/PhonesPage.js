@@ -2,8 +2,8 @@ import PhonesCatalog from './PhonesCatalog.js';
 import ShoppingCart from './ShoppingCart.js';
 import Filter from './Filter.js';
 import PhoneViewer from './PhoneViewer.js';
-import { getAll, getById } from "../api/phones.js";
-import Component from "../Component.js";
+import { getAll, getById } from '../api/phones.js';
+import Component from '../Component.js';
 
 export default class PhonesPage extends Component {
   constructor(element) {
@@ -26,17 +26,18 @@ export default class PhonesPage extends Component {
   }
 
   async loadPhones() {
-    const phones = await getAll()
-    this.setState({ phones })
+    const phones = await getAll();
+    this.setState({ phones });
   }
 
   removeItem(phoneId) {
-    const newItems = {...this.state.items};
+    const newItems = { ...this.state.items };
     delete newItems[phoneId];
     this.setState({
       items: newItems,
     });
   }
+
   addItem(phoneId) {
     const oldItems = this.state.items;
     const items = {
@@ -45,12 +46,13 @@ export default class PhonesPage extends Component {
     };
 
     this.setState({
-      items: items,
+      items,
     });
   }
+
   async selectedPhone(phoneId) {
     const phone = await getById(phoneId);
-    this.setState({ selectedPhone: phone});
+    this.setState({ selectedPhone: phone });
   }
 
   unSelectedPhone() {
@@ -62,7 +64,7 @@ export default class PhonesPage extends Component {
   init() {
     this.initComponent(PhonesCatalog, {
       phones: this.state.phones,
-      onPhoneSelected: this.onPhoneSelected ,
+      onPhoneSelected: this.onPhoneSelected,
       onAdd: this.onAdd,
     });
     this.initComponent(PhoneViewer, {
@@ -73,7 +75,7 @@ export default class PhonesPage extends Component {
 
     this.initComponent(ShoppingCart, {
       items: this.state.items,
-      onRemove:  this.onRemove,
+      onRemove: this.onRemove,
     });
     this.initComponent(Filter);
   }
@@ -96,10 +98,9 @@ export default class PhonesPage extends Component {
         <!--Main content-->
         
         <div class="col-md-10">
-        ${this.state.selectedPhone ? 
-          `<div data-component="PhoneViewer"></div>`
-          :
-          `<div data-component="PhonesCatalog"></div>`}
+        ${this.state.selectedPhone
+    ? '<div data-component="PhoneViewer"></div>'
+    : '<div data-component="PhonesCatalog"></div>'}
         </div>
       </div>  
     `;

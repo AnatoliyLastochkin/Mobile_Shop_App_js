@@ -3,9 +3,8 @@ const API_URL = 'https://anatoliylastochkin.github.io/Mobile_Shop_App_js/api/pho
 export const getAll = async () => {
   try {
     const response = await fetch(`${API_URL}.json`);
-    const data = response.json();
-    return  data;
-  }catch (e) {
+    return response.json();
+  } catch (e) {
     return [];
   }
 };
@@ -15,9 +14,7 @@ export const getById = async (phoneId) => {
     const response = await fetch(`${API_URL}/${phoneId}.json`);
     const data = response.json();
     return data;
-  }catch (e) {
+  } catch (e) {
     return 0;
   }
 };
-
-

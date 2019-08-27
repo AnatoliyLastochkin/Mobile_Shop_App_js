@@ -1,0 +1,28 @@
+{
+  "name": "mobile_shop_app_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "eslint": "^6.2.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "node-static": "0.7.11"
+  },
+  "scripts": {
+    "eslint": "./node_modules/.bin/eslint --init"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnatoliyLastochkin/Mobile_Shop_App_js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnatoliyLastochkin/Mobile_Shop_App_js/issues"
+  },
+  "homepage": "https://github.com/AnatoliyLastochkin/Mobile_Shop_App_js#readme"
+}

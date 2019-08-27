@@ -5,6 +5,7 @@ export default class Component {
 
     this.components = {};
   }
+
   initComponent(Constructor, props = {}) {
     const componentName = Constructor.name;
     const element = this.element.querySelector(`[data-component="${componentName}"]`);
@@ -25,7 +26,7 @@ export default class Component {
   setState(newState) {
     this.state = {
       ...this.state,
-      ...newState
+      ...newState,
     };
 
     this.render();
@@ -37,6 +38,7 @@ export default class Component {
 
       if (!delegateTarget) return;
 
+      // eslint-disable-next-line  no-param-reassign
       evt.delegateTarget = delegateTarget;
 
       callBack(evt);
@@ -47,16 +49,13 @@ export default class Component {
     if (a === b) return true;
 
     if (typeof a !== 'object'
-      ||typeof b !== 'object'
+      || typeof b !== 'object'
       || a === null
       || b === null) {
-      return false
+      return false;
     }
 
-    return Object.keys(a).length === Object.keys(b).length &&
-      Object.keys(a).every(key => this.deepEqual(a[key], b[key]))
+    return Object.keys(a).length === Object.keys(b).length
+      && Object.keys(a).every(key => this.deepEqual(a[key], b[key]));
   }
-
-
 }
-

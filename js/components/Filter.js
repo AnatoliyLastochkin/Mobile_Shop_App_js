@@ -2,7 +2,7 @@ export default class Filter {
   constructor(element) {
     this.element = element;
 
-    this.render()
+    this.render();
   }
 
   render() {

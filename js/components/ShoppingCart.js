@@ -1,4 +1,4 @@
-import Component from "../Component.js";
+import Component from '../Component.js';
 
 export default class ShoppingCart extends Component {
   constructor(element, props) {
@@ -7,10 +7,10 @@ export default class ShoppingCart extends Component {
     this.render();
 
     this.on('click', 'RemoveButton', evt => {
-      const phoneId = evt.delegateTarget.dataset.phoneId;
+      const { phoneId } = evt.delegateTarget.dataset;
 
       this.props.onRemove(phoneId);
-    })
+    });
   }
 
   render() {
@@ -19,7 +19,7 @@ export default class ShoppingCart extends Component {
       <ul class="shopping-cart-list">
         ${Object.keys(this.props.items).map(item => `
           <li>${item.toUpperCase().slice(0, 13)} - ${this.props.items[item]}
-            <button class="btn" data-element="RemoveButton" data-phone-id="${ item }">X</button>
+            <button class="btn" data-element="RemoveButton" data-phone-id="${item}">X</button>
           </li>  
         `).join('')}
       </ul>    

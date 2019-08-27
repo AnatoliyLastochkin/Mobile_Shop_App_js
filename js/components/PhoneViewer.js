@@ -1,20 +1,20 @@
-import Component from "../Component.js";
+import Component from '../Component.js';
 
 export default class PhoneViewer extends Component {
   constructor(element, props) {
     super(element, props);
 
     this.state = {
-      selectedImg: this.props.phone.images[0]
+      selectedImg: this.props.phone.images[0],
     };
 
     this.render();
 
-    this.on('click', 'BackButton', evt => {
+    this.on('click', 'BackButton', () => {
       this.props.onBack();
     });
 
-    this.on('click', 'AddButton', evt => {
+    this.on('click', 'AddButton', () => {
       this.props.onAdd(this.props.phone.id);
     });
 
@@ -22,7 +22,7 @@ export default class PhoneViewer extends Component {
       const imgUrl = evt.delegateTarget.dataset.imageUrl;
       this.setState({
         selectedImg: imgUrl,
-      })
+      });
     });
   }
 
@@ -31,15 +31,15 @@ export default class PhoneViewer extends Component {
     this.element.innerHTML = `
     <div>
   
-      <img class="phone" src="${ this.state.selectedImg }">
+      <img class="phone" src="${this.state.selectedImg}">
   
       <button data-element="BackButton" class="btn btn-success">Back</button>
       <button data-element="AddButton" class="btn btn-success">Add to basket</button>
   
   
-      <h1>${ phone.name }</h1>
+      <h1>${phone.name}</h1>
   
-      <p>${ phone.description }</p>
+      <p>${phone.description}</p>
   
       <ul class="phone-thumbs">
         ${phone.images.map(img => `
@@ -54,7 +54,7 @@ export default class PhoneViewer extends Component {
           <span>Availability and Networks</span>
           <dl>
             <dt>Availability</dt>
-            <dd>${ phone.availability }</dd>
+            <dd>${phone.availability}</dd>
           </dl>
         </li>
         <li>
