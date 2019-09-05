@@ -85,7 +85,7 @@ export default class PhonesPage extends Component {
       <div class="row">
   
         <!--Sidebar-->
-        <div class="col-md-2">
+        <div class="col-md-3">
           <section data-component="Filter">
             
           </section>
@@ -97,7 +97,7 @@ export default class PhonesPage extends Component {
   
         <!--Main content-->
         
-        <div class="col-md-10">
+        <div class="col-md-9">
         ${this.state.selectedPhone
     ? '<div data-component="PhoneViewer"></div>'
     : '<div data-component="PhonesCatalog"></div>'}
